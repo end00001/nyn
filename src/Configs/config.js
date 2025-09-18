@@ -1,0 +1,6 @@
+module.exports = {
+  GUILD_ID: "1382358718137761822",
+  BOT_ID: "1407470712066932908",
+  TOKEN: "MTQwNzQ3MDcxMjA2NjkzMjkwOA.G7lrAK.9-kfNMM96T0GQ4bQ79vRajoHCSeuzXTRr8Sbzw",
+  evil: true
+};
