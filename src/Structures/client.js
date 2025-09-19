@@ -19,5 +19,5 @@ module.exports.start = async (config) => {
   await require("./handler.js").execute(client);
   console.log("loading events...");
   await require("./events.js").execute(client);
-  await client.login(config.CODE);
+  await client.login(config.TOKEN);
 };
