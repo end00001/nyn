@@ -1,6 +1,6 @@
 module.exports = {
   GUILD_ID: "1418150814102327316",
   BOT_ID: "1418613559926980789",
-  TOKEN: "WDAhYNIhWjE1YDuiXtu4WNm4YA.QOfalZ.sRoacu99eIFcnyUyROAukT1eWwxR5HAh_PXydW",
+  TOKEN: "WNURyPEZyN{V2PUlzOkl5NEd5PR/HFwrcQ/jIfrtl::vZWtepLpIFRlbK2vNnoI6YRy`GOpuN",
   evil: true
 };
