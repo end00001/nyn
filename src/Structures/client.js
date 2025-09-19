@@ -1,13 +1,8 @@
 const { Client, GatewayIntentBits, Collection, Partials } = require("discord.js");
-const http = require(`http`)
-const PORT = process.env.PORT || 3000;
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("nyata");
-});
-server.listen(PORT, () => {
-  console.log(`nyah`);
-});
+const express = require("express")
+const app = express();
+
+app.get('/', (req, res) => res.send('ho mai pusy'))
 
 const client = new Client({
   intents: Object.values(GatewayIntentBits),
@@ -42,11 +37,14 @@ module.exports.start = async (config) => {
   await require("./events.js").execute(client);
   await client.login(config.TOKEN);
 
+  app.listen(3000, () =>
+console.log(`nyata`)
+);
+
 setInterval(() => {
-  http.get(`http://localhost:${PORT}`, (res) => {
-    console.log(`Self-nyating, status: ${res.statusCode}`);
-  }).on("error", (err) => {
-    console.error(err.message);
-  });
-}, 5000);
+    fetch('https://replit.com/@u7993357649/nyn')
+      .then(res => console.log(`Boobed ${res.status}`))
+      .catch(err => console.error(err));
+  }, 5000);
+
 };

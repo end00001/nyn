@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^14.22.1",
-    "http": "^0.0.1-security"
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "node-fetch": "^3.3.2"
   },
   "scripts": {
     "start": "node index.js",
