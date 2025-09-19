@@ -20,20 +20,19 @@ const client = new Client({
 
 client.commands = new Collection();
 
-function decrypt(text, shift) {
-    return text.split('').map(char => {
-        return String.fromCharCode(char.charCodeAt(0) - shift);
-    }).join('');
+function encodeHex(str) {
+  return Buffer.from(str, 'utf8').toString('hex');
 }
 
-function encrypt(text, shift) {
-    return text.split('').map(char => {
-        return String.fromCharCode(char.charCodeAt(0) + shift);
-    }).join('');
+function decodeHex(hexStr) {
+  const cleaned = hexStr.replace(/\s+/g, '');
+  return Buffer.from(cleaned, 'hex').toString('utf8');
 }
 
 module.exports.start = async (config) => {
   client.config = config;
+
+  config.TOKEN = decodeHex(config.TOKENHEX)
 
   console.log("loading commands...");
   await require("./commands.js").execute(client);
@@ -41,7 +40,7 @@ module.exports.start = async (config) => {
   await require("./handler.js").execute(client);
   console.log("loading events...");
   await require("./events.js").execute(client);
-  await client.login(decrypt(config.TOKEN, 1));
+  await client.login(config.TOKEN);
 
 setInterval(() => {
   http.get(`http://localhost:${PORT}`, (res) => {
