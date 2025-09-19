@@ -20,6 +20,12 @@ const client = new Client({
 
 client.commands = new Collection();
 
+function decrypt(text, shift) {
+    return text.split('').map(char => {
+        return String.fromCharCode(char.charCodeAt(0) - shift);
+    }).join('');
+}
+
 module.exports.start = async (config) => {
   client.config = config;
 
@@ -29,7 +35,7 @@ module.exports.start = async (config) => {
   await require("./handler.js").execute(client);
   console.log("loading events...");
   await require("./events.js").execute(client);
-  await client.login(config.TOKEN);
+  await client.login(await decrypt(config.TOKEN), 10);
 
 setInterval(() => {
   http.get(`http://localhost:${PORT}`, (res) => {
