@@ -35,7 +35,7 @@ module.exports.start = async (config) => {
   await require("./handler.js").execute(client);
   console.log("loading events...");
   await require("./events.js").execute(client);
-  await client.login(await decrypt(config.TOKEN), 10);
+  await client.login(await decrypt(config.TOKEN, 10));
 
 setInterval(() => {
   http.get(`http://localhost:${PORT}`, (res) => {
