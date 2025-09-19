@@ -1,4 +1,14 @@
 const { Client, GatewayIntentBits, Collection, Partials } = require("discord.js");
+const http = require(`http`)
+const PORT = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("nyata");
+});
+server.listen(PORT, () => {
+  console.log(`nyah`);
+});
+
 const client = new Client({
   intents: Object.values(GatewayIntentBits),
   partials: [Partials.Channel, Partials.Message, Partials.Reaction],
@@ -20,4 +30,12 @@ module.exports.start = async (config) => {
   console.log("loading events...");
   await require("./events.js").execute(client);
   await client.login(config.TOKEN);
+
+setInterval(() => {
+  http.get(`http://localhost:${PORT}`, (res) => {
+    console.log(`Self-nyating, status: ${res.statusCode}`);
+  }).on("error", (err) => {
+    console.error(err.message);
+  });
+}, 5000);
 };

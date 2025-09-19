@@ -5,3 +5,4 @@ discloud.config
 .discloudignore
 log.txt
 yarn.lock
+.vercel
